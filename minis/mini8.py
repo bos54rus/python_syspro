@@ -6,13 +6,7 @@ def deprecated(f=None, since=None, will_be_removed=None):
             deprecated, since=since, will_be_removed=will_be_removed
         )
 
-    message = f"Warning: function {f.__name__} is deprecated"
-    if since is not None:
-        message += f" since version {since}"
-    if will_be_removed is not None:
-        message += f". It will be removed in version {will_be_removed}"
-    else:
-        message += ". It will be removed in future versions"
+message = f"Warning: function {f.__name__} is deprecated {'' if since == None else f'since version {since}'}. It will be removed in {'future versions' if will_be_removed==None else f'version {will_be_removed}'}."
 
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
